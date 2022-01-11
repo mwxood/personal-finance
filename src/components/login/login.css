@@ -1,0 +1,23 @@
+.paperClass {
+    padding: 20px;
+    height: 70vh;
+    width: 280px;
+    margin: 20px auto;
+}
+
+.loginGrid {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.login-title {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+.fullWidth {
+    width: 100%;
+}
