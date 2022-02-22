@@ -21,3 +21,7 @@
 .fullWidth {
     width: 100%;
 }
+
+.errorMessage {
+    color: #d32f2f;
+}

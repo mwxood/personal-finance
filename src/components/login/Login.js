@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Button, TextField, Avatar, Grid, Paper, Box   } from '@mui/material';
+import { Button, TextField, Avatar, Grid, Paper, Box, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import './login.css';
 
-const Login = () => {
+const Login = (props) => {
 
     const [userInput, setUser] = useState('')
     const [passwordInput, setPassword] = useState('')
+    const [inputError, setError] = useState(false)
+    const [message, setMessage] = useState('')
 
     const addUser = (event) => {
         setUser(event.target.value);
@@ -20,12 +22,15 @@ const Login = () => {
         event.preventDefault();
 
         if(userInput.trim().length === 0 && passwordInput.trim().length === 0) {
-            console.log('error')
+            setError(true)
+            setMessage( 'All fields are required')
             return;
         }
 
-        setUser('');
-        setPassword('');
+        setMessage()
+        setUser('')
+        setPassword('')
+        setError(false)
     }
 
     return(
@@ -37,14 +42,18 @@ const Login = () => {
                             <LockOutlinedIcon />
                         </Avatar>
                         <h2 className='login-title'>Sign In</h2>
+                        <Typography className="errorMessage" component="span">
+                            {message}
+                        </Typography>
                     </Grid>
                    
                     <form onSubmit={onLogin}>
+                    
                        <Box mb={1}>
-                         <TextField className="fullWidth" type="text" value={userInput} label="Username" onChange={addUser}  variant="standard"/>
+                         <TextField className={`fullWidth`} error={inputError} type="text" value={userInput} label="Username" onChange={addUser}  variant="standard"/>
                        </Box>
                        <Box mb={3}>
-                            <TextField className="fullWidth" type="text" value={passwordInput} label="Password" onChange={addPassword}  variant="standard"/>
+                            <TextField className={`fullWidth`}  error={inputError} type="text" value={passwordInput} label="Password" onChange={addPassword}  variant="standard"/>
                        </Box>
                         <Button className="fullWidth" type="submit"  variant="contained">send</Button>
                     </form>
